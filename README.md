@@ -29,3 +29,13 @@
 		- ssh -T git@github.com
 
 
+## IDE IntelliJ IDEA
+- [Download IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
+	- 应该下载 Ultimate 版， Community版功能不全, 没有Java， Spring项目
+
+- [2018 IntelliJ IDEA 最新激活码](https://www.jianshu.com/p/48f637869456)
+	- 注意： 要修改 hosts 文件： `0.0.0.0 account.jetbrains.com`
+
+- Spring Framework 下载地址
+	- http://repo.spring.io/libs-release-local/org/springframework/spring/
+	- http://central.maven.org/maven2/org/springframework/spring-test/5.0.8.RELEASE/
