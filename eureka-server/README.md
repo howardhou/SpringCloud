@@ -1,6 +1,13 @@
 # Eureka Server
 
-- 服务治理是微服务架构中最为核心的模块，主要用来实现各个微服务的自动化注册和发现
+- 服务治理是微服务架构中最为核心的模块，主要用来实现各个微服务的自动化注册和发现， Eureka 分为 服务端和客户端
+	- 服务端：也称为注册中心
+	- 客户端：处理服务的注册和发现 （Discovery）
+
+- 搭建服务注册中心
+
+- 高可用注册中心
+	- eureka.client.service-url.defaultZone=http://peer2:1112/eureka
 
 - [Spring Cloud 官网](https://projects.spring.io/spring-cloud/)
 	- Finchley builds and works with Spring Boot 2.0.x, and is not expected to work with Spring Boot 1.5.x.
