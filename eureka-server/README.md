@@ -9,6 +9,20 @@
 - 高可用注册中心
 	- eureka.client.service-url.defaultZone=http://peer2:1112/eureka
 
+- 运行两个服务
+    - mvn install
+    - cd ~/Git/SpringCloud/eureka-server/target
+    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
+    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
+
+
+- ISSUE:
+	- EMERGENCY! EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT. RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEING EXPIRED JUST TO BE SAFE. : [说明Eureka已经进入了自我保护模式](https://blog.csdn.net/cvntopuyef/article/details/78477681) 
+		- 解决方法是：[剔除过期等不健康实例](https://blog.csdn.net/cvntopuyef/article/details/78465798), 生产环境不建议使用
+
+	- [Idea里并没有提示 eureka.client.healthcheck.enabled 这个属性，并且还显示黄色](https://www.cnblogs.com/woshimrf/p/springclout-eureka.html)
+	
+
 - [Spring Cloud 官网](https://projects.spring.io/spring-cloud/)
 	- Finchley builds and works with Spring Boot 2.0.x, and is not expected to work with Spring Boot 1.5.x.
 	- The Dalston and Edgware release trains build on Spring Boot 1.5.x, and are not expected to work with Spring Boot 2.0.x.
@@ -32,9 +46,3 @@
 	- spring-cloud-starter-netflix-hystrix-dashboard
 	- spring-cloud-starter-openfeign
 
-
-- ISSUE:
-	- EMERGENCY! EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT. RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEING EXPIRED JUST TO BE SAFE. : [说明Eureka已经进入了自我保护模式](https://blog.csdn.net/cvntopuyef/article/details/78477681) 
-		- 解决方法是：[剔除过期等不健康实例](https://blog.csdn.net/cvntopuyef/article/details/78465798), 生产环境不建议使用
-
-	- [Idea里并没有提示 eureka.client.healthcheck.enabled 这个属性，并且还显示黄色](https://www.cnblogs.com/woshimrf/p/springclout-eureka.html)

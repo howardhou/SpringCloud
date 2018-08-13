@@ -22,3 +22,13 @@
 
 - ISSUE:
 	- discoveryclient.getLocalServiceInstance 方法被取消了， 替代方法是： https://stackoverflow.com/questions/45085790/spring-cloud-discoveryclient-getlocalserviceinstance-deprecated-how-to-use-r
+	
+- 运行两个 Hello Service
+    - mvn install
+    - cd ~/Git/SpringCloud/hello2/target/
+    - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8081
+    - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8082
+    
+- URL:  http://localhost:8080/hello
+    
+    
