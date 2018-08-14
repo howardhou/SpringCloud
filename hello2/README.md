@@ -1,5 +1,9 @@
 # Hello2 - eureka client
 
+- http://localhost:8080/hello
+
+- 本例是服务治理的客户端， 发现注册中心，并注册到注册中心： @EnableDiscoveryClient
+
 - 服务治理是微服务架构中最为核心的模块，主要用来实现各个微服务的自动化注册和发现， Eureka 分为 服务端和客户端
 	- 服务端：也称为注册中心
 	- 客户端：处理服务的注册和发现（Discovery）
@@ -29,6 +33,5 @@
     - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8081
     - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8082
     
-- URL:  http://localhost:8080/hello
     
     

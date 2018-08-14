@@ -1,5 +1,18 @@
 # SpringCloud
 
+- eureka-server : 服务治理的 注册中心
+
+- hello : Spring Boot 项目， 包括 actutor 服务监控功能
+- hello2 : 服务治理的客户端， 想注册中心注册本服务
+
+- ribbon-consumer : 客户端负载均衡 和 重试机制
+- ribbon-consumer2 ： 增加 hystrix 功能 - 增加服务容错保护
+
+- hystrix-dashboard ： hystrix 的 监控面版
+
+- turbine ： 集群监控时使用， 收集集群的监控信息后，将信息传给  hystrix 的 监控面版
+
+
 
 ## ISSUE
 - warning: push.default is unset; its implicit value is changing in Git 2.0 from 'matching' to 'simple'
