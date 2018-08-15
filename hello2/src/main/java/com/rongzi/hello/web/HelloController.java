@@ -1,11 +1,10 @@
 package com.rongzi.hello.web;
 
+import com.rongzi.hello.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 import java.util.logging.Logger;
@@ -27,10 +26,27 @@ public class HelloController {
 
         discoveryClient.getServices().forEach(id -> {
             discoveryClient.getInstances(id).forEach(instance -> {
-                logger.info("/hello, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
+                logger.info("hello.HelloController.index(), host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
             });
         });
 
         return "Hello World";
+    }
+
+    /* 第6章使用， Feign */
+
+    @RequestMapping(value = "hello1", method = RequestMethod.GET)
+    public String hello(@RequestParam String name){
+        return "Hello " + name;
+    }
+
+    @RequestMapping(value = "hello2", method = RequestMethod.GET)
+    public User hello(@RequestHeader String name, @RequestHeader Integer age){
+        return new User(name, age);
+    }
+
+    @RequestMapping(value = "hello3", method = RequestMethod.POST)
+    public String hello(@RequestBody User user){
+        return "hello " + user.getName() + ", " + user.getAge();
     }
 }
