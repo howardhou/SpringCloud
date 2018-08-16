@@ -33,5 +33,10 @@
     - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8081
     - java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8082
     
-    
+### 第6章使用， Feign 的 服务端
+
+- 改造Hello-Service项目，新增3个接口
+	
+- http://localhost:8080/hello1?name=howard
+
     
