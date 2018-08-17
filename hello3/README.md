@@ -6,3 +6,5 @@
   	- 新建 RefactorHelloController 类，实现 HelloService 接口
   	- ISSUE: hello2 和 hello3 接口 的入参是空
   		- 原因是 idea 自动生成的代码，没有在参数前面带上 @RequestParam，@RequestHeader，@RequestBody 注解
+  		
+- 使用 此项目的客户端是 feign-consumer2  
