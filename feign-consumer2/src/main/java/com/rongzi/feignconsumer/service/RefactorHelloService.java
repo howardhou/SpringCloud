@@ -4,7 +4,7 @@ import com.rongzi.helloserviceapi.service.HelloService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
-@FeignClient("hello-service")
+@FeignClient(name = "hello-service", fallback = RefactorFallback.class)
 public interface RefactorHelloService extends HelloService {
 
 }
