@@ -1,11 +1,13 @@
 package com.rongzi.ribbonconsumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.logging.Logger;
 
+@RibbonClient("hello-service")
 @Service
 public class HelloService {
 
