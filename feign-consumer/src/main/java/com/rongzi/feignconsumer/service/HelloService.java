@@ -2,11 +2,12 @@ package com.rongzi.feignconsumer.service;
 
 import com.rongzi.feignconsumer.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient("hello-service")
-@Repository
+@Component
 public interface HelloService {
 
     @RequestMapping("hello")
