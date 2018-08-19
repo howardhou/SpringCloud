@@ -1,12 +1,13 @@
 package com.rongzi.feignconsumer.service;
 
+import com.rongzi.feignconsumer.FullLogConfigration;
 import com.rongzi.feignconsumer.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient("hello-service")
+@FeignClient(value = "hello-service", configuration = FullLogConfigration.class)
 @Component
 public interface HelloService {
 
