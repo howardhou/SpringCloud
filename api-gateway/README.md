@@ -17,3 +17,9 @@
 	- 测试 地址
 		- http://localhost:5555/api-a/hello1?name=hou
 		- http://localhost:5555/api-b/feign-consumer2
+
+- 重试机制
+    - ISSUE：当 调用的API超时时，出现 SocketTimeoutException: Read timed out 异常， 解决办法
+        1. 需要添加依赖包： `org.springframework.retry:spring-retry` 
+        2. 配置 zuul.retryable=true ， 因为默认是false
+        3. 参考：https://stackoverflow.com/questions/44642136/zuul-retry-configuration-is-not-working-with-eureka
