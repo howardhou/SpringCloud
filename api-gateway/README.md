@@ -50,13 +50,20 @@
 - Hystrix 和 Ribbon 支持
     - 这种 path, url 方式不会使用 zuul 自带的 ribbon 和 hystrix 功能
     - 尽量使用 path, service-id 的方式， 这样就会使用 ribbon 和 hystrix 功能
-
-    - 关闭ribbon重试机制
-        - zuul.retryable=false
-        - zuul.routes.hello-service.retryable=false
+        
+    - 重试机制
+        - ISSUE：当 调用的API超时时，出现 SocketTimeoutException: Read timed out 异常， 解决办法
+            1. 需要添加依赖包： `org.springframework.retry:spring-retry` 
+            2. 配置 zuul.retryable=true ， 因为默认是false
+            3. 参考：https://stackoverflow.com/questions/44642136/zuul-retry-configuration-is-not-working-with-eureka
+        
+        - 关闭ribbon重试机制
+            - zuul.retryable=false ， 默认就是 false
+            - zuul.routes.hello-service.retryable=false
+            
+        - http://localhost:5555/api-c/hello
 
 ## 请求过滤器
 - GET http://localhost:5555/api-b/feign-consumer2 返回 401 
 - GET http://localhost:5555/api-b/feign-consumer2?accessToken=token 返回成功
-
 
