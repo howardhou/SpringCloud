@@ -26,7 +26,7 @@ public class HelloController {
 
         discoveryClient.getServices().forEach(id -> {
             discoveryClient.getInstances(id).forEach(instance -> {
-                logger.info("index ethod, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
+                logger.info("index method, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
             });
         });
 

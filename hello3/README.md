@@ -7,4 +7,10 @@
   	- ISSUE: hello2 和 hello3 接口 的入参是空
   		- 原因是 idea 自动生成的代码，没有在参数前面带上 @RequestParam，@RequestHeader，@RequestBody 注解
   		
-- 使用 此项目的客户端是 feign-consumer2  
+- 使用 此项目的客户端是 feign-consumer2
+
+- 运行两个 Hello Service
+    `mvn install
+    cd ~/Git/SpringCloud/hello3/target/
+    java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8081
+    java -jar hello-0.0.1-SNAPSHOT.jar --server.port=8082` 
