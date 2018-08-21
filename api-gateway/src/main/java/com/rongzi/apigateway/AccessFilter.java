@@ -27,7 +27,7 @@ public class AccessFilter extends ZuulFilter {
     //判断该过滤器是否应该被执行， 可以用来指定过滤器的有效范围
     @Override
     public boolean shouldFilter() {
-        return false;
+        return true;
     }
 
     //过滤器的具体逻辑
