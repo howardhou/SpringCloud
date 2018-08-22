@@ -5,34 +5,19 @@
 	- zuul.routes.api-a-url.path=/api/**
 	- zuul.routes.api-a-url.url=http://localhost:8080/
 
-	- 测试： www.localhost.com:5555/api/hello1?name=dongdong
-
-    - 这种 path, url 方式不会使用 zuul 自带的 ribbon 和 hystrix 功能
-
 - 面向服务的路由，利用 Eureka
 	- zuul.routes.api-a.path=/api-a/**
 	- zuul.routes.api-a.service-id=hello-service
 	- zuul.routes.api-b.path=/api-b/**
 	- zuul.routes.api-b.service-id=feign-consumer
-	- eureka.client.service-url.defaultZone=http://localhost:1111/eureka
-
-    - 尽量使用 path, service-id 的方式， 这样就会使用 ribbon 和 hystrix 功能
-
-	- 测试 地址
-		- http://localhost:5555/api-a/hello1?name=hou
-		- http://localhost:5555/api-b/feign-consumer2
 
     - 另一种配置方式
         - zuul.routes.hello-service=/hello-service/**
-        
-        - URL: http://localhost:5555/hello-service/hello1?name=howard
 
-- 服务路由的默认规则
-    - 在默认情况下，所有的Eureka 上的服务都会被 Zuul 自动地创建路由， 类似 zuul.routes.hello-service=/hello-service/** 这样
-   
-    - http://localhost:5555/hello-servcie/hello1?name=howard
-    - http://localhost:5555/feign-consumer/feign-consumer2
+- 默认配置， 在默认情况下，所有的Eureka 上的服务都会被 Zuul 自动地创建路由， 类似 zuul.routes.hello-service=/hello-service/** 这样
     
+- 忽略默认配置方法：`zuul.ignored-services=hello-service`
+
 - 自定义路由映射规则： 实现 /v1/hello-service
 
 - 路径匹配
@@ -51,19 +36,37 @@
     - 这种 path, url 方式不会使用 zuul 自带的 ribbon 和 hystrix 功能
     - 尽量使用 path, service-id 的方式， 这样就会使用 ribbon 和 hystrix 功能
         
-    - 重试机制
-        - ISSUE：当 调用的API超时时，出现 SocketTimeoutException: Read timed out 异常， 解决办法
-            1. 需要添加依赖包： `org.springframework.retry:spring-retry` 
-            2. 配置 zuul.retryable=true ， 因为默认是false
-            3. 参考：https://stackoverflow.com/questions/44642136/zuul-retry-configuration-is-not-working-with-eureka
+- 重试机制
+    - ISSUE：当 调用的API超时时，出现 SocketTimeoutException: Read timed out 异常， 解决办法
+        1. 需要添加依赖包： `org.springframework.retry:spring-retry` 
+        2. 配置 zuul.retryable=true ， 因为默认是false
+        3. 参考：https://stackoverflow.com/questions/44642136/zuul-retry-configuration-is-not-working-with-eureka
+    
+    - 关闭ribbon重试机制
+        - zuul.retryable=false ， 默认就是 false
+        - zuul.routes.hello-service.retryable=false
         
-        - 关闭ribbon重试机制
-            - zuul.retryable=false ， 默认就是 false
-            - zuul.routes.hello-service.retryable=false
-            
-        - http://localhost:5555/api-c/hello
-
+- 测试 地址
+	- http://localhost:5555/api/hello1?name=dongdong
+	- http://localhost:5555/api-a/hello1?name=hou
+	- http://localhost:5555/api-b/feign-consumer2
+    - http://localhost:5555/hello-service/hello1?name=howard
+	- http://localhost:5555/feign-consumer/feign-consumer2
+    - http://localhost:5555/api-c/hello
+    
 ## 请求过滤器
-- GET http://localhost:5555/api-b/feign-consumer2 返回 401 
-- GET http://localhost:5555/api-b/feign-consumer2?accessToken=token 返回成功
+- 过滤器 demo
+	- GET http://localhost:5555/api-b/feign-consumer2 返回 401 
+	- GET http://localhost:5555/api-b/feign-consumer2?accessToken=token 返回成功
 
+- 过滤器的4种类型
+	- pre
+	- routing
+	- post
+	- error
+
+- 过滤器的异常处理??
+	- Finchley 版，[与书上的例子不一样](https://zhuanlan.zhihu.com/p/26910991?refer=dreawer)， 应该是有所变化了
+	
+- 禁用过滤器： 
+	- zuul.AccessFilter.pre.disable=true
