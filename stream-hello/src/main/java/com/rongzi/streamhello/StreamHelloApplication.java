@@ -17,6 +17,7 @@ public class StreamHelloApplication {
 		SpringApplication.run(StreamHelloApplication.class, args);
 	}
 
+	//消息反馈, 处理完消息之后，将结果反馈给对方
 //	@StreamListener(Processor.INPUT)
 //	@SendTo(Processor.OUTPUT)
 //	public String handle(String value) {
