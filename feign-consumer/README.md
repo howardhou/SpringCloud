@@ -29,7 +29,7 @@
 	- 启动 hystrix, 默认为 false: `feign.hystrix.enabled=true`
 	- 熔断时间要 大于 Ribbon 的超时时间， 否则 请求直接熔断， 重试机制就没任何意义了: `hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=5000`
     		
-- 开启压缩功能
+- 开启压缩功能 ？？
 - 配置日志等级
 
 - 服务降级配置， 请看 feign-consumer2 项目
