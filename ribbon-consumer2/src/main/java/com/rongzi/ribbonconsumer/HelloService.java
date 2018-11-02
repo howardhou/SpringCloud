@@ -29,8 +29,9 @@ public class HelloService {
         return result;
     }
 
-    public String helloFallback(){
-
+    public String helloFallback(Throwable e){
+//        System.out.println(e.getMessage());
+        System.out.println(e);
         return "error";
     }
 }
