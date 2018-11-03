@@ -1,6 +1,7 @@
 # Hello2 - eureka client
 
 - http://localhost:8080/hello
+- http://localhost:8080/user/{id}
 
 - 使用此服务的客户端是 feign-consumer, ribbon-consumer, ribbon-consumer2
 
@@ -37,8 +38,8 @@
     
 ### 第6章使用， Feign 的 服务端
 
-- 改造Hello-Service项目，新增3个接口
-	
-- http://localhost:8080/hello1?name=howard
-
+- 改造Hello-Service项目，新增3个接口	
+    - http://localhost:8080/hello1?name=howard
+    - http://localhost:8080/hello2 ，参数在Header中
+    - http://localhost:8080/hello3 ，参数在Body中
     
