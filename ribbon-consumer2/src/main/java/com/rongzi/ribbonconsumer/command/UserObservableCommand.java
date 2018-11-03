@@ -42,4 +42,10 @@ public class UserObservableCommand extends HystrixObservableCommand<User> {
 
         return observable;
     }
+
+    //实现服务降级
+    @Override
+    protected Observable<User> resumeWithFallback() {
+        return super.resumeWithFallback();
+    }
 }

@@ -26,4 +26,10 @@ public class UserCommand extends HystrixCommand<User> {
     protected User run() throws Exception {
         return restTemplate.getForObject("http://hello-service/user/{1}", User.class, id);
     }
+
+    // 实现服务降级
+    @Override
+    protected User getFallback() {
+        return new User();
+    }
 }
