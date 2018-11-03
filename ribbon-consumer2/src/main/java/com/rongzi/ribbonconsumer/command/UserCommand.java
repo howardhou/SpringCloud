@@ -30,6 +30,15 @@ public class UserCommand extends HystrixCommand<User> {
     // 实现服务降级
     @Override
     protected User getFallback() {
-        return new User();
+        return new User("服务降级了", 0);
+    }
+
+    // 开启请求缓存
+    // 返回请求缓存Key
+    @Override
+    protected String getCacheKey() {
+        System.out.println("UserCommand： 调用getCacheKey");//打印一下什么时候会触发
+
+        return String.valueOf(id);
     }
 }

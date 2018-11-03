@@ -1,6 +1,7 @@
 package com.rongzi.ribbonconsumer;
 
 import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import com.rongzi.ribbonconsumer.command.UserCommand;
 import com.rongzi.ribbonconsumer.command.UserObservableCommand;
 import com.rongzi.ribbonconsumer.model.User;
@@ -39,6 +40,9 @@ public class ConsumerController {
         // 通过注解实现同步执行命令
         //User user = userService.getUserById(id);
 
+        // 初始化请求上下文, 解决请求缓存异常
+        HystrixRequestContext.initializeContext();
+
         // 通过继承 HystrixCommand 实现同步执行命令
         User user = new UserCommand(restTemplate,id).execute();
 
@@ -53,27 +57,34 @@ public class ConsumerController {
         // 通过注解实现异步执行命令
         // User user = userService.getUserById(id);
 
+        // 初始化请求上下文, 解决请求缓存异常
+        HystrixRequestContext.initializeContext();
+
         //通过继承 HystrixCommand 实现异步执行命令
         Future<User> future = new UserCommand(restTemplate, id).queue();
         User user = future.get();
         System.out.println("异步执行Command： " + user.toString());
 
+        // 测试请求缓存， 多次调用，实际上只有第一次真正调用接口
+        future = new UserCommand(restTemplate, id).queue();
+        user = future.get();
+
         return user;
     }
 
-    @RequestMapping(value = "/getUserObservable")
-    public User getUserObservable(){
+    @RequestMapping(value = "/getUserObservable/{id}")
+    public User getUserObservable(@PathVariable("id") Integer id){
 
-        User _user = new User("王二小", 16);
+        User _user = new User("王二小", 0);
 
         // 通过 HystrixCommand 注解 实现 Observable 的定义
-        // Observable<User> observable = userService.getUserObservable(45);
+        // Observable<User> observable = userService.getUserObservable(id);
 
         // 通过继承 HystrixObservableCommand 实现 Observable的定义， 响应式编程
         // 热 Hot Observable
-        //Observable<User> observable = new UserObservableCommand(restTemplate, 212).observe();
+        //Observable<User> observable = new UserObservableCommand(restTemplate, id).observe();
         // 冷 Cold Observable
-        Observable<User> observable = new UserObservableCommand(restTemplate, 212).toObservable();
+        Observable<User> observable = new UserObservableCommand(restTemplate, id).toObservable();
         observable.subscribe(new Subscriber<User>() {
             @Override
             public void onCompleted() {

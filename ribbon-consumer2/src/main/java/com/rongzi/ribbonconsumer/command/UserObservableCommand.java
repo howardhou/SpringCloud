@@ -48,4 +48,12 @@ public class UserObservableCommand extends HystrixObservableCommand<User> {
     protected Observable<User> resumeWithFallback() {
         return super.resumeWithFallback();
     }
+
+    // 开启请求缓存
+    // 返回请求缓存Key
+    @Override
+    protected String getCacheKey() {
+        System.out.println("UserObservableCommand： 调用getCacheKey");//打印一下什么时候会触发
+        return String.valueOf(id);
+    }
 }
