@@ -1,4 +1,4 @@
-package com.rongzi.ribbonconsumer;
+package com.rongzi.ribbonconsumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;

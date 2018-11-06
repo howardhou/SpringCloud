@@ -1,10 +1,10 @@
-package com.rongzi.ribbonconsumer;
+package com.rongzi.ribbonconsumer.controller;
 
-import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import com.rongzi.ribbonconsumer.command.UserCommand;
 import com.rongzi.ribbonconsumer.command.UserObservableCommand;
 import com.rongzi.ribbonconsumer.model.User;
+import com.rongzi.ribbonconsumer.service.HelloService;
 import com.rongzi.ribbonconsumer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.Action1;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
