@@ -9,11 +9,11 @@
 - 高可用注册中心
 	- eureka.client.service-url.defaultZone=http://peer2:1112/eureka
 
-- 运行两个服务
+- 运行两个服务(支持docker容器制作)
     - mvn install
     - cd ~/Git/SpringCloud/eureka-server/target
-    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
-    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
+    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --server.port=1111 --eureka.instance.hostname=server1 --eureka-server=localhost:1112
+    - java -jar eureka-server-0.0.1-SNAPSHOT.jar --server.port=1112 --eureka.instance.hostname=server2 --eureka-server=localhost:1111
 
 
 - ISSUE:
