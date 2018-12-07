@@ -1,4 +1,4 @@
-package com.rongzi.ribbonconsumer.model;
+package com.example.ribbonconsumer.model;
 
 public class User {
     private String name;

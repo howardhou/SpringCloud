@@ -1,11 +1,17 @@
 # ribbon consumer 2 - hystrix
 
 - 项目信息
-	- http://localhost:9000/actuator/hystrix.stream
 	- 此项目使用的 API 是 hello2 项目
 	- Hystrix 配置，都测试过，都可以工作， 只是在 IDE 中没有提示
 
 - 官方文档： http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html
+
+- 测试
+    - http://localhost:9000/ribbon-consumer/
+    - http://localhost:9000/getUser/111
+    - http://localhost:9000/getUserAsync/111
+    - http://localhost:9000/getUserObservable/111
+    - 监控： http://localhost:9000/actuator/hystrix.stream
 
 - Hystrix 原理分析： https://www.cnblogs.com/gaoyanqing/p/7470085.html
 	- HystrixCommand : 用在返回单个操作结果

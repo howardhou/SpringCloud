@@ -1,4 +1,4 @@
-package com.rongzi.ribbonconsumer.service;
+package com.example.ribbonconsumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class HelloService {
     @Autowired
     RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "helloFallback", commandKey = "helloKey")
+    @HystrixCommand(fallbackMethod = "helloFallback", commandKey = "m-helloServcie")
     public String helloServcie(){
 
         long start = System.currentTimeMillis();

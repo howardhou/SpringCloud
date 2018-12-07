@@ -1,14 +1,17 @@
-package com.rongzi.ribbonconsumer.controller;
+package com.example.ribbonconsumer.controller;
 
+import com.example.ribbonconsumer.command.UserCommand;
+import com.example.ribbonconsumer.model.User;
+import com.example.ribbonconsumer.service.HelloService;
+import com.example.ribbonconsumer.service.UserService;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
-import com.rongzi.ribbonconsumer.command.UserCommand;
-import com.rongzi.ribbonconsumer.command.UserObservableCommand;
-import com.rongzi.ribbonconsumer.model.User;
-import com.rongzi.ribbonconsumer.service.HelloService;
-import com.rongzi.ribbonconsumer.service.UserService;
+import com.example.ribbonconsumer.command.UserObservableCommand;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
@@ -24,7 +27,8 @@ public class ConsumerController {
     @Autowired
     HelloService helloService;
 
-    @RequestMapping(value = "/ribbon-consumer")
+    @ApiOperation(value="测试方法", notes="调用 Hello Service 的 hello 接口")
+    @RequestMapping(value = "/ribbon-consumer", method = RequestMethod.GET)
     public String helloConsumer(){
 
         ArrayList<Integer> list = new ArrayList<>();
@@ -70,13 +74,13 @@ public class ConsumerController {
     public User getUser(@PathVariable("id") Integer id){
 
         // 通过注解实现同步执行命令
-        //User user = userService.getUserById(id);
+        User user = userService.getUserById(id);
 
         // 初始化请求上下文, 解决请求缓存异常
         HystrixRequestContext.initializeContext();
 
         // 通过继承 HystrixCommand 实现同步执行命令
-        User user = new UserCommand(restTemplate,id).execute();
+        //User user = new UserCommand(restTemplate,id).execute();
 
         System.out.println("同步执行Command： " + user.toString());
 

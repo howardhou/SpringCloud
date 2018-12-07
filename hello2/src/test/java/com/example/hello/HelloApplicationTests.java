@@ -1,4 +1,4 @@
-package com.rongzi.ribbonconsumer;
+package com.example.hello;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RibbonConsumerApplicationTests {
+public class HelloApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

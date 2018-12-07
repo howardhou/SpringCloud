@@ -1,13 +1,11 @@
-package com.rongzi.ribbonconsumer.service;
+package com.example.ribbonconsumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
-import com.rongzi.ribbonconsumer.model.User;
+import com.example.ribbonconsumer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import rx.Observable;
-import rx.Subscriber;
 
 import java.util.concurrent.Future;
 
@@ -17,13 +15,13 @@ public class UserService {
     private RestTemplate restTemplate;
 
     // 通过 HystrixCommand 注解 实现 同步执行 命令的定义
-    @HystrixCommand
+    @HystrixCommand(commandKey = "m-getUserById")
     public User getUserById(Integer id){
         return restTemplate.getForObject("http://hello-service/user/{1}", User.class, id);
     }
 
     // 通过 HystrixCommand 注解 实现 异步执行 命令的定义
-    @HystrixCommand
+    @HystrixCommand(commandKey = "m-getUserByIdAsync")
     public Future<User> getUserByIdAsync(final Integer id){
 
         AsyncResult<User> asyncResult = new AsyncResult<User>() {

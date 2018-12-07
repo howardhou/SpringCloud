@@ -1,8 +1,8 @@
-package com.rongzi.ribbonconsumer.command;
+package com.example.ribbonconsumer.command;
 
+import com.example.ribbonconsumer.model.User;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixObservableCommand;
-import com.rongzi.ribbonconsumer.model.User;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 import rx.Subscriber;

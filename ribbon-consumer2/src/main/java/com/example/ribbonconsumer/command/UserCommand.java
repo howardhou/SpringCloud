@@ -1,9 +1,9 @@
-package com.rongzi.ribbonconsumer.command;
+package com.example.ribbonconsumer.command;
 
+import com.example.ribbonconsumer.model.User;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixThreadPoolKey;
-import com.rongzi.ribbonconsumer.model.User;
 import org.springframework.web.client.RestTemplate;
 
 // 通过继承 HystrixCommand 实现自定义命令，完成同步或异步执行
