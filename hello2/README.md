@@ -43,3 +43,9 @@
     - http://localhost:8080/hello2 ，参数在Header中
     - http://localhost:8080/hello3 ，参数在Body中
     
+    
+- swagger
+  - 概念：https://www.cnblogs.com/piwefei/p/9134892.html
+  - Swagger使用指南 ： https://blog.csdn.net/sanyaoxu_2/article/details/80555328
+  - 测试地址 ： http://localhost:8080/swagger-ui.html
+    
